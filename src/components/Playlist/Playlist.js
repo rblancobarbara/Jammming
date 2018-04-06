@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
-import TrackList from './TrackList';
 import './Playlist.css';
+import TrackList from '../TrackList/TrackList';
 
-class Playlist extends Component {
+class Playlist extends React.Component {
   render() {
     return (
       <div className="Playlist">

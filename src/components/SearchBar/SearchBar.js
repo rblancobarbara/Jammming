@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
-import './SearchBar.css'
+import './SearchBar.css';
 
-class SearchBar extends Component {
+class SearchBar extends React.Component {
   render() {
     return (
       <div className="SearchBar">
