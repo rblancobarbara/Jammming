@@ -9,7 +9,8 @@ import SearchResults from '../SearchResults/SearchResults';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
+    //let searchResults = [name, artist, album];
+    //this.state = { searchResults: searchResults };
   }
 
   render() {
