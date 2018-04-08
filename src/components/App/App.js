@@ -9,8 +9,31 @@ import SearchResults from '../SearchResults/SearchResults';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //let searchResults = [name, artist, album];
-    //this.state = { searchResults: searchResults };
+    this.state = { searchResults: [
+      {
+        name: "Tiny Dancer",
+        artist: "Elton John",
+        album: "Madman Across the Water"
+      },
+      {
+        name: "Tiny Dancer",
+        artist: "Tim McGraw",
+        album: "Love Story"
+      },
+      {
+        name: "Tiny Dancer",
+        artist: "Rockabye Baby!",
+        album: "Lullaby Renditions of Elton John"
+      },
+      {
+        name: "Tiny Dancer",
+        artist: "The White Raven",
+        album: "Tiny Dancer"
+      },
+    ],
+    playlistName: 'New Playlist',
+    playlistTracks: []
+    };
   }
 
   render() {
