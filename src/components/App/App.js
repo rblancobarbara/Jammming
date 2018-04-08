@@ -32,7 +32,23 @@ class App extends React.Component {
       },
     ],
     playlistName: 'New Playlist',
-    playlistTracks: []
+    playlistTracks: [
+      {
+        name: "Stronger",
+        artist: "Britney Spears",
+        album: "Oops!... I Did It Again"
+      },
+      {
+        name: "So Emotional",
+        artist: "Whitney Houston",
+        album: "Whitney"
+      },
+      {
+        name: "It's Not Right, But It's Okay",
+        artist: "Whitney Houston",
+        album: "My Love Is Your Love"
+      },
+    ]
     };
   }
 
@@ -44,7 +60,9 @@ class App extends React.Component {
             <SearchBar />
             <div className="App-playlist">
               <SearchResults searchResults={this.state.searchResults}/>
-              <Playlist />
+              <Playlist
+                playlistName={this.state.playlistName}
+                playlistTracks={this.state.playlistTracks}/>
             </div>
           </div>
       </div>
