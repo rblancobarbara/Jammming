@@ -50,18 +50,23 @@ class App extends React.Component {
       },
     ]
     };
+
+    this.addTrack = this.addTrack.bind(this);
+
   }
 
   addTrack(track) {
-    //if (TrackList.track.id !== playlistTracks.track.id) {
-      //playlistTracks.push(track);
-    //}
-    this.setState = this.state.addTrack;
-    this.addTrack = this.addTrack.bind(this);
+    let tracks = this.state.playlistTracks;
+    if (!this.state.playlistTracks.includes(track.id)) {
+      tracks.push(track);
+      this.setState({
+        playlistTracks: tracks
+      })
+    }
   }
 
   removeTrack(track) {
-    
+
   }
 
   render() {
