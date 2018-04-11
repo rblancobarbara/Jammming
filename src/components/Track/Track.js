@@ -15,7 +15,7 @@ class Track extends React.Component {
   }
 
   removeTrack() {
-    //this.props.onRemove(this.props.track);
+    this.props.onRemove(this.props.track.id);
   }
 
   render() {
@@ -25,9 +25,7 @@ class Track extends React.Component {
           <h3>{this.props.track.name}</h3>
           <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-        <a className="Track-action"
-          onClick={this.addTrack}
-          onClick={this.removeTrack}>+ -</a>
+        {this.renderAction()}
       </div>
     )
   }
