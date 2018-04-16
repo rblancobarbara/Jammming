@@ -6,16 +6,19 @@ import './SearchBar.css';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {term: ''};
     this.search = this.search.bind(this);
     this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   handleTermChange(event) {
-    //this.setState({event.target.value: term});
+    this.setState({term: event.target.value});
+    console.log(this.state.term);
   }
 
   search() {
-    //this.setState({this.props.onSearch: term});
+    this.props.onSearch(this.state.term);
+    //console.log(this.state.term);
   }
 
   render() {
