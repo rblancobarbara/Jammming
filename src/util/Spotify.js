@@ -8,20 +8,27 @@ const Spotify = {
     if (userAccessToken) {
       return userAccessToken;
     } else {
-      const accessToken = window.location.href.match(/access_token=([^&]*)/);
-      const expiresIn = window.location.href.match(/expires_in=([^&]*)/);
+      let accessToken = window.location.href.match(/access_token=([^&]*)/);
+      let expiresIn = window.location.href.match(/expires_in=([^&]*)/);
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
 
-      window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirect_uri}`;
+      window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
     }
-  }
-}
+  },
 
-  search(handleTermChange.term, headers.Authorization) {
-    return fetch("https://api.spotify.com/v1/search?type=track&q=TERM").then(response => {
+  search(term) {
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`).then(response => {
+      //{
+      //  headers: {Authorization: `Bearer ${accessToken}`}
+      //}
       if (response.ok) {
-        return response.json().map([track.id, track.name, track.artist[0].name, track.album.name, track.uri]);
+        return response.json().map(track => [{
+          id: track.id,
+          name: track.name,
+          artist: track.artist.name,
+          album: track.album.name,
+          URI: track.uri}]);
       }
       throw new Error("Request failed!");
     }, networkError => console.log(networkError.message)
@@ -29,6 +36,7 @@ const Spotify = {
       //Code to execute with jsonResponse
     });
   }
+}
 
 /*
     })
