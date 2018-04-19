@@ -47,15 +47,4 @@ const scope="playlist-modify-public playlist-modify-private"
 const response_type="token"
 state: "123"
 
-access_token:
-token_type:
-expires_in:
-state:
-
-
-let userAccessToken;
-
-
-window.setTimeout(() => accessToken = '', expiresIn * 1000);
-window.history.pushState('Access Token', null, '/');
 */
