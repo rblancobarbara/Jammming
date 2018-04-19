@@ -1,12 +1,12 @@
 const clientId = "5c716839e03944d292029c2e4983c390";
 const redirectUri = "http://localhost:3000/";
 
-const userAccessToken = "";
+const accessToken = "";
 
 const Spotify = {
   getAccessToken() {
-    if (userAccessToken) {
-      return userAccessToken;
+    if (accessToken) {
+      return accessToken;
     } else {
       let accessToken = window.location.href.match(/access_token=([^&]*)/);
       let expiresIn = window.location.href.match(/expires_in=([^&]*)/);
@@ -18,15 +18,14 @@ const Spotify = {
   },
 
   search(term) {
-    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`).then(response => {
-      //{
-      //  headers: {Authorization: `Bearer ${accessToken}`}
-      //}
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+      headers: {Authorization: `Bearer ${accessToken}`}
+    }).then(response => {
       if (response.ok) {
         return response.json().map(track => [{
           id: track.id,
           name: track.name,
-          artist: track.artist.name,
+          artist: track.artist[0].name,
           album: track.album.name,
           URI: track.uri}]);
       }
