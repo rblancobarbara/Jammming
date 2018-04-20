@@ -48,35 +48,31 @@ const Spotify = {
     let accessToken = this.props.accessToken;
     let headers = {headers: {Authorization: `Bearer ${accessToken}`}};
     let userId;
+    let playlistId;
 
-    fetch('https://api.spotify.com/v1/me', {headers: headers}).then(response => {
-      if (response.ok) {
-        return response.json();
-        //how to extract the id parameter and save to the user ID variable,
+    return fetch('https://api.spotify.com/v1/me', {headers: headers}
+        ).then(response => response.json()
+        ).then(jsonResponse => {
+          userId = jsonResponse.id;
+          return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            headers: headers,
+            method: "POST",
+            body: JSON.stringify({name: playlistName})
+          }).then(response => response.json()
+          ).then(jsonResponse => {
+            playlistId = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+              headers: headers,
+              method: "POST",
+              body: JSON.stringify({name: trackUris})
+            }).then(response => response.json()
+            ).then(jsonResponse => {
+              //Code to execute with jsonResponse
+
+            })
+          });
+        })
       }
-      throw new Error('Request failed!');
-    }, networkError => console.log(networkError.message)
-  ).then(jsonResponse => {
-
-      //Code to execute with jsonResponse
-  });
-
-  fetch("https://api.spotify.com/v1/users/{user_id}/playlists", {
-    headers: "headers", //??
-    method: "POST",
-    body: JSON.stringify({id: "200"})
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
     }
-    throw new Error("Request failed!");
-  }, networkError => console.log(networkError.message)
-).then(jsonResponse => {
-  //Code to execute with jsonResponse
-});
-}
-
-
-}
 
 export default Spotify;
