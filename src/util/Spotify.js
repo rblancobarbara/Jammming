@@ -27,23 +27,56 @@ const Spotify = {
           name: track.name,
           artist: track.artist[0].name,
           album: track.album.name,
-          URI: track.uri}]);
+          uri: track.uri}]);
       }
       throw new Error("Request failed!");
     }, networkError => console.log(networkError.message)
     ).then(jsonResponse => {
-      //Code to execute with jsonResponse
+        if (jsonResponse.ok) {
+          return jsonResponse().map(track => [{
+            id: track.id,
+            name: track.name,
+            artist: track.artist[0].name,
+            album: track.album.name,
+            uri: track.uri
+          }])
+        }
     });
-  }
+  },
+
+  savePlaylist(playlistName, trackUris) {
+    let accessToken = this.props.accessToken;
+    let headers = {headers: {Authorization: `Bearer ${accessToken}`}};
+    let userId;
+
+    fetch('https://api.spotify.com/v1/me', {headers: headers}).then(response => {
+      if (response.ok) {
+        return response.json();
+        //how to extract the id parameter and save to the user ID variable,
+      }
+      throw new Error('Request failed!');
+    }, networkError => console.log(networkError.message)
+  ).then(jsonResponse => {
+
+      //Code to execute with jsonResponse
+  });
+
+  fetch("https://api.spotify.com/v1/users/{user_id}/playlists", {
+    headers: "headers", //??
+    method: "POST",
+    body: JSON.stringify({id: "200"})
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error("Request failed!");
+  }, networkError => console.log(networkError.message)
+).then(jsonResponse => {
+  //Code to execute with jsonResponse
+});
 }
 
-/*
-    })
 
-    { headers: {Authorization: `Bearer ${accessToken}`}
 }
 
-  }
-}
-*/
 export default Spotify;
