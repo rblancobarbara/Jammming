@@ -1,5 +1,5 @@
 const clientId = "5c716839e03944d292029c2e4983c390";
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://rbjammming.surge.sh/";
 
 const accessToken = "";
 
@@ -45,7 +45,7 @@ const Spotify = {
   },
 
   savePlaylist(playlistName, trackUris) {
-    let accessToken = this.props.accessToken;
+    let accessToken = Spotify.getAccessToken();
     let headers = {headers: {Authorization: `Bearer ${accessToken}`}};
     let userId;
     let playlistId;
@@ -67,6 +67,7 @@ const Spotify = {
               body: JSON.stringify({name: trackUris})
             }).then(response => response.json()
             ).then(jsonResponse => {
+              
               //Code to execute with jsonResponse
 
             })

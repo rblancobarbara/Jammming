@@ -88,7 +88,7 @@ class App extends React.Component {
       this.setState({playlistName: 'New Playlist'});
     }).then(playlistTracks => {
       this.setState({playlistTracks: []});
-    })      
+    })
     const trackUris = this.state.playlistTracks.map(track => track.uri);
     //console.log(trackUris);
   }
