@@ -12,11 +12,11 @@ class SearchBar extends React.Component {
 
   handleTermChange(event) {
     this.setState({term: event.target.value});
-    console.log(this.state.term);
   }
 
   search() {
     this.props.onSearch(this.state.term);
+    //playlistName={this.state.playlistName}
   }
 
   render() {
